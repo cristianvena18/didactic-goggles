@@ -1,0 +1,42 @@
+﻿@model Estudiantes.ViewModel.Paginator
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @(Model.CurrentPage ==1 ? "disabled": "")">
+            <a class="page-link" asp-all-route-data="@Model.QueryString" asp-route-pagina="@(Model.CurrentPage - 1)" tabindex="-1" aria-disabled="true">Anterior</a>
+        </li>
+
+        @if (Model.CurrentPage > 2)
+        {
+        <li class="page-item"><a class="page-link" asp-all-route-data="@Model.QueryString" asp-route-pagina="1">1</a></li>
+        }
+
+
+        @if (Model.CurrentPage > 1)
+        {
+        <li class="page-item"><a class="page-link" asp-all-route-data="@Model.QueryString" asp-route-pagina="@(Model.CurrentPage - 1)">@(Model.CurrentPage - 1)</a></li>
+        }
+
+        <li class="page-item active" aria-current="page">
+            <a class="page-link">@Model.CurrentPage <span class="sr-only">(current)</span></a>
+        </li>
+
+        @if (Model.CurrentPage < Model.TotalItems)
+        {
+        <li class="page-item"><a class="page-link" asp-all-route-data="@Model.QueryString" asp-route-pagina="@(Model.CurrentPage + 1)">@(Model.CurrentPage + 1)</a></li>
+        }
+
+        @if (Model.CurrentPage < Model.TotalItems - 1)
+        {
+        <li class="page-item"><a class="page-link" asp-all-route-data="@Model.QueryString" asp-route-pagina="@(Model.TotalItems)">@(Model.TotalItems)</a></li>
+        }
+
+        <li class="page-item @(Model.CurrentPage==Model.TotalItems ? "disabled": "")">
+            <a class="page-link" asp-all-route-data="@Model.QueryString" asp-route-pagina="@(Model.CurrentPage + 1)">Siguiente</a>
+        </li>
+    </ul>
+</nav>
+TotalPaginas: @Model.TotalPages
+<br />
+TotalRegistros: @Model.TotalItems
+<br />

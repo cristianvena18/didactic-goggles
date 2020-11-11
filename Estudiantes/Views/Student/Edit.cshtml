@@ -1,0 +1,62 @@
+﻿@model Estudiantes.Models.Student
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Editar Estudiante</h1>
+
+<h4>Estudiante</h4>
+<hr />
+<div class="row">
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div class="col-md-12">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CareerId" class="control-label"></label>
+                <select asp-for="CareerId" class="form-control" asp-items="ViewBag.CareerId"></select>
+                <span asp-validation-for="CareerId" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Picture" />
+            <div class="form-group">
+                <img src="~/images/students/@Model.Picture"
+                     id="imagen"
+                     class="rounded-circle"
+                     height="80" with="40"
+                     asp-append-version="true" />
+                <input asp-for="Picture" type="file" id="seleccionImg" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Grabar" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+
+    </div>
+
+    <div>
+        <a asp-action="Index">Regresar a la lista</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/js//imagenes.js"></script>
